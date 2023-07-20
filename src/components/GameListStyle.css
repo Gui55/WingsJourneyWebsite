@@ -1,0 +1,35 @@
+html{
+    background-color: rgb(212, 255, 255);
+}
+
+.wingsPage{
+    background-color: rgb(212, 255, 255);
+    padding: 10px;
+}
+
+.gameListElementContainer{
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    align-items: center;
+}
+
+.defaultGameListElement{
+    list-style-type: none;
+    border: 5px solid rgb(96, 218, 255);
+    border-radius: 10px;
+    padding: 5px;
+    margin: 25px auto;
+    width: 1200px;
+}
+  
+.gameListImage{
+    border: 5px solid rgb(96, 218, 255);
+    border-radius: 10px;
+    width: 150px;
+    height: 200px;
+    margin-left: 5px;
+}
+
+.gameText{
+    color: rgb(49, 207, 255);
+}
