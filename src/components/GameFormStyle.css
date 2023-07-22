@@ -1,0 +1,24 @@
+html, .formComponent{
+    background-color: rgb(212, 255, 255);
+}
+
+h1{
+    padding-top: 20px;
+}
+
+.gameField{
+    background-color: rgb(212, 255, 255);
+    border: 5px solid rgb(96, 218, 255);
+    border-radius: 10px;
+    width: 1000px;
+    margin-left: 10px;
+    outline: none;
+}
+
+.aMargin{
+    margin-left: 10px;
+}
+
+.fieldDiv{
+    margin: 20px;
+}

@@ -8,3 +8,9 @@ const apiClient = axios.create(
 )
 
 export const gamesApi = () => apiClient.get("games")
+export const uploadGamesApi = (game) => apiClient.post("games", game)
+export const uploadGameImageApi = (id, formData) => apiClient.post(`games/image/${id}`, formData, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    }
+  })

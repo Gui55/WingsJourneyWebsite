@@ -11,7 +11,7 @@ export default function HeaderComponent(){
                         <div className="collapse navbar-collapse"/>
                         <ul className="navbar-nav">
                             <li className="nav-item fs-5">
-                                <Link className="nav-link text-info" to="/">+ Games</Link>
+                                <Link className="nav-link text-info" to="/game/submit">+ Games</Link>
                             </li>
                         </ul>
                     </nav>
