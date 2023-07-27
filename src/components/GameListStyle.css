@@ -20,6 +20,17 @@ html{
     padding: 5px;
     margin: 25px auto;
     width: 1200px;
+    cursor: pointer;
+}
+
+.defaultGameListElement:hover{
+    list-style-type: none;
+    border: 5px solid rgb(0, 64, 255);
+    border-radius: 10px;
+    padding: 5px;
+    margin: 25px auto;
+    width: 1200px;
+    cursor: pointer;
 }
   
 .gameListImage{
@@ -32,4 +43,12 @@ html{
 
 .gameText{
     color: rgb(49, 207, 255);
+}
+
+.defaultGameListElement:hover .gameText{
+    color:rgb(0, 64, 255);
+}
+
+.defaultGameListElement:hover .gameListImage{
+    border: 5px solid rgb(0, 64, 255);
 }
