@@ -7,7 +7,7 @@ export default function HeaderComponent(){
             <div className='container'>
                 <div className='row'>
                     <nav className="navbar navbar-expand-lg">
-                        <label className="navbar-brand text-info ms-2 fs-2 fw-bold">For the Night</label>
+                        <label className="navbar-brand text-info ms-2 fs-2 fw-bold">Wings Journey</label>
                         <div className="collapse navbar-collapse"/>
                         <ul className="navbar-nav">
                             <li className="nav-item fs-5">

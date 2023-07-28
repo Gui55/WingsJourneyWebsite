@@ -1,3 +1,44 @@
-html{
+html, .detailsPage{
     background-color: rgb(212, 255, 255);
+}
+
+h1{
+    padding-top: 20px;
+}
+
+.gameBasicInfo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.gameDetailsImage{
+    border: 5px solid rgb(96, 218, 255);
+    border-radius: 10px;
+    width: 340px;
+    height: 450px;
+    margin-right: 10px;
+}
+
+.basicInfos{
+    margin-left: 10px;
+    text-align: start;
+}
+
+.basicInfoDesc{
+    font-size: 25px;
+}
+
+.basicInfoTitle{
+    color: rgb(96, 218, 255);
+    font-size: 30px;
+}
+
+.gameDesc{
+    margin: 50px;
+    padding: 40px;
+    border: 5px solid rgb(96, 218, 255);
+    border-radius: 10px;
+    font-size: 23px;
 }
