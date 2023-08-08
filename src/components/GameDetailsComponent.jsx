@@ -1,7 +1,7 @@
 import { useNavigate, useParams } from 'react-router-dom'
 import './GameDetailsStyle.css'
 import { useEffect, useState } from 'react'
-import { findGameByIdApi } from './api/GamesService'
+import { deleteGameApi, findGameByIdApi } from './api/GamesService'
 
 export default function GameDetailsComponent(){
 
@@ -22,6 +22,12 @@ export default function GameDetailsComponent(){
         navigate(`../game/submit/${id}`)
     }
 
+    function deleteGame(){
+        deleteGameApi(id)
+            .then(response => navigate("../home"))
+            .catch(error => console.log(error))
+    }
+
     return(
         <div className='detailsPage'>
             <h1 className='text-info'>{game.name}</h1>
@@ -38,7 +44,7 @@ export default function GameDetailsComponent(){
             </div>
             <div className='btnDiv'>
                 <strong className='gameBtn' onClick={()=>editGame()}>Editar</strong>
-                <strong className='gameBtn'>Excluir</strong>
+                <strong className='gameBtn' onClick={()=>deleteGame()}>Excluir</strong>
             </div>
             <label className='gameDesc'>{game.description}</label>
         </div>

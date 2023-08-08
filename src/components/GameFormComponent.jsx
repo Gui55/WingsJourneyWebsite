@@ -68,7 +68,7 @@ export default function GameFormComponent(){
             } else {
                 updateGameApi(game)
                     .then(response => {
-                        if(changeIm){
+                        if(changeIm && values.image!=null){
                             uploadGameImage(id, values.image)
                         } else {
                             navigate('/home')
