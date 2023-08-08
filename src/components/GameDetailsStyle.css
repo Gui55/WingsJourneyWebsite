@@ -11,6 +11,7 @@ h1{
     align-items: center;
     justify-content: center;
     margin-top: 50px;
+    gap: 20px;
 }
 
 .gameDetailsImage{
@@ -18,11 +19,9 @@ h1{
     border-radius: 10px;
     width: 340px;
     height: 450px;
-    margin-right: 10px;
 }
 
 .basicInfos{
-    margin-left: 10px;
     text-align: start;
 }
 
@@ -41,4 +40,26 @@ h1{
     border: 5px solid rgb(96, 218, 255);
     border-radius: 10px;
     font-size: 23px;
+}
+
+.gameBtn{
+    border: 5px solid rgb(96, 218, 255);
+    border-radius: 10px;
+    color: rgb(96, 218, 255);
+    padding: 20px;
+    width: 200px;
+}
+
+.gameBtn:hover{
+    border: 5px solid rgb(0, 64, 255);
+    color:rgb(0, 64, 255);
+    cursor: pointer;
+}
+
+.btnDiv{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 40px;
+    gap: 50px;
 }

@@ -30,6 +30,10 @@ export default function GameDetailsComponent(){
                     <label className='basicInfoDesc'>{game.company}</label>
                 </div>
             </div>
+            <div className='btnDiv'>
+                <strong className='gameBtn'>Editar</strong>
+                <strong className='gameBtn'>Excluir</strong>
+            </div>
             <label className='gameDesc'>{game.description}</label>
         </div>
     )
