@@ -22,3 +22,26 @@ h1{
 .fieldDiv{
     margin: 20px;
 }
+
+.gameBtn{
+    border: 5px solid rgb(96, 218, 255);
+    border-radius: 10px;
+    color: rgb(96, 218, 255);
+    padding: 20px;
+    width: 200px;
+}
+
+.gameBtn:hover{
+    border: 5px solid rgb(0, 64, 255);
+    color:rgb(0, 64, 255);
+    cursor: pointer;
+}
+
+.gameFormImage{
+    border: 5px solid rgb(96, 218, 255);
+    border-radius: 10px;
+    width: 340px;
+    height: 450px;
+    margin-left: 10px;
+    margin-right: 20px;
+}

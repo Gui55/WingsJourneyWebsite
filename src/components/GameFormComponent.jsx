@@ -1,45 +1,89 @@
 import { useFormik } from 'formik'
 import './GameFormStyle.css'
-import { uploadGamesApi, uploadGameImageApi } from './api/GamesService'
-import { useNavigate } from 'react-router-dom'
+import { uploadGamesApi, uploadGameImageApi, findGameByIdApi, updateGameApi } from './api/GamesService'
+import { useNavigate, useParams } from 'react-router-dom'
+import { useEffect, useState } from 'react'
 
 export default function GameFormComponent(){
 
     const navigate = useNavigate()
 
+    const {id} = useParams()
+
+    const [initName, setInitName] = useState('')
+    const [initCompany, setInitCompany] = useState('')
+    const [initGenre, setInitGenre] = useState('')
+    const [initDescription, setInitDescription] = useState('')
+    const [initImage, setInitImage] = useState('')
+    const [changeIm, setChangeIm] = useState(true)
+
+    useEffect(
+        () => retrieveGame(),
+        [id]
+    )
+
+    function retrieveGame(){
+        if(id!=-1){
+            findGameByIdApi(id)
+                .then(response => {
+                    setInitName(response.data.name)
+                    setInitCompany(response.data.company)
+                    setInitGenre(response.data.genre)
+                    setInitDescription(response.data.description)
+                    setInitImage(response.data.image)
+                    setChangeIm(response.data.image.length==0)
+                    //initialImage = response.data.name
+                })
+                .catch(error => console.log(error))
+        }
+    }
+
     const formik = useFormik({
         initialValues: {
-            name: '',
-            company: '',
-            genre: '',
-            description: '',
+            name: initName,
+            company: initCompany,
+            genre: initGenre,
+            description: initDescription,
             image: null
         },
         onSubmit: async (values) => {
-
             const game = {
-                id: -1,
+                id: id,
                 name: values.name,
                 company: values.company,
-                image: '',
+                image: initImage,
                 genre: values.genre,
                 description: values.description,
                 likes: 0,
                 dislikes: 0
             }
 
-            uploadGamesApi(game)
-            .then((response) => uploadGameImage(response.data, values.image))
-            .catch((error) => {
-                console.log(game)
-                console.log(error)
-            })
-        }
+            if(id==-1){
+                uploadGamesApi(game)
+                    .then((response) => uploadGameImage(response.data, values.image))
+                    .catch((error) => {
+                        console.log(game)
+                        console.log(error)
+                    })
+            } else {
+                updateGameApi(game)
+                    .then(response => {
+                        if(changeIm){
+                            uploadGameImage(id, values.image)
+                        } else {
+                            navigate('/home')
+                        }
+                    })
+                    .catch((error) => console.log(error))
+            }
+        },
+        enableReinitialize: true
     })
 
     function uploadGameImage(id, image){
         let formData = new FormData()
         formData.append("image", image)
+        console.log(image)
         uploadGameImageApi(id, formData)
             .then((response) => navigate('/home'))
             .catch((error) => {
@@ -78,10 +122,16 @@ export default function GameFormComponent(){
                     </div>
                     <div className='fieldDiv'>
                         <label className='text-info'>Imagem:</label>
-                        <input type="file" className='aMargin' accept='image/*' name="image"
+                        {changeIm && (<input type="file" className='aMargin' accept='image/*' name="image"
                         onChange={(e) =>
                             formik.setFieldValue('image', e.currentTarget.files[0])
-                        }/>
+                        }/>)}
+                        {!changeIm && (
+                            <div>
+                                <img className='gameFormImage' src={initImage} />
+                                <strong className='gameBtn' onClick={()=>setChangeIm(true)}>Alterar imagem</strong>
+                            </div>
+                        )}
                     </div>
                     <div>
                         <button className="btn btn-success m-5" type="submit">Salvar</button>

@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import './GameDetailsStyle.css'
 import { useEffect, useState } from 'react'
 import { findGameByIdApi } from './api/GamesService'
@@ -8,12 +8,18 @@ export default function GameDetailsComponent(){
     const {id} = useParams()
     const [game, setGame] = useState('')
 
+    const navigate = useNavigate()
+
     useEffect(() => getGame(id),[id])
 
     function getGame(id){
         findGameByIdApi(id)
         .then((response) => setGame(response.data))
         .catch((error) => console.log(error))
+    }
+
+    function editGame(){
+        navigate(`../game/submit/${id}`)
     }
 
     return(
@@ -31,7 +37,7 @@ export default function GameDetailsComponent(){
                 </div>
             </div>
             <div className='btnDiv'>
-                <strong className='gameBtn'>Editar</strong>
+                <strong className='gameBtn' onClick={()=>editGame()}>Editar</strong>
                 <strong className='gameBtn'>Excluir</strong>
             </div>
             <label className='gameDesc'>{game.description}</label>

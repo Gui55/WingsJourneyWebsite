@@ -12,7 +12,7 @@ export default function WingsJourneyApp(){
                 <Routes>
                     <Route path='/' element={<GamesListComponent/>}/>
                     <Route path='/home' element={<GamesListComponent/>}/>
-                    <Route path='/game/submit' element={<GameFormComponent/>}/>
+                    <Route path='/game/submit/:id' element={<GameFormComponent/>}/>
                     <Route path='/game/details/:id' element={<GameDetailsComponent/>}/>
                 </Routes>
             </BrowserRouter>
