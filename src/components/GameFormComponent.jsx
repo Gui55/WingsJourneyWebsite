@@ -83,7 +83,6 @@ export default function GameFormComponent(){
     function uploadGameImage(id, image){
         let formData = new FormData()
         formData.append("image", image)
-        console.log(image)
         uploadGameImageApi(id, formData)
             .then((response) => navigate('/home'))
             .catch((error) => {
@@ -117,7 +116,7 @@ export default function GameFormComponent(){
                     <div className='fieldDiv'>
                         <label className='text-info'>Descrição:</label>
                         <br/>
-                        <input type="text" className="gameField" name="description"
+                        <textarea rows="6" cols="50" className="gameField" name="description"
                         value={formik.values.description} onChange={formik.handleChange}/>
                     </div>
                     <div className='fieldDiv'>
@@ -134,7 +133,7 @@ export default function GameFormComponent(){
                         )}
                     </div>
                     <div>
-                        <button className="btn btn-success m-5" type="submit">Salvar</button>
+                        <button className='gameBtnB' type="submit">Salvar</button>
                     </div>
                 </form>
             </div>

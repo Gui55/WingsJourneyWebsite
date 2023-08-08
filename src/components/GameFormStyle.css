@@ -37,6 +37,21 @@ h1{
     cursor: pointer;
 }
 
+.gameBtnB{
+    border: 5px solid rgb(96, 218, 255);
+    color: rgb(96, 218, 255);
+    border-radius: 10px;
+    background-color: rgb(212, 255, 255);
+    padding: 10px;
+    margin-bottom: 30px;
+}
+
+.gameBtnB:hover{
+    border: 5px solid rgb(0, 64, 255);
+    color:rgb(0, 64, 255);
+    cursor: pointer;
+}
+
 .gameFormImage{
     border: 5px solid rgb(96, 218, 255);
     border-radius: 10px;

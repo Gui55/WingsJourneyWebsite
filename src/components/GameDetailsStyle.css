@@ -40,6 +40,8 @@ h1{
     border: 5px solid rgb(96, 218, 255);
     border-radius: 10px;
     font-size: 23px;
+    width: 1300px;
+    word-wrap: break-word;
 }
 
 .gameBtn{
