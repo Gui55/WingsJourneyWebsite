@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { gamesApi } from './api/GamesService'
+import { gamesApi } from '../api/GamesService'
 import './GameListStyle.css'
 import { useNavigate } from 'react-router-dom'
 

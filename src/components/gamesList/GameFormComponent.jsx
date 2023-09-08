@@ -1,6 +1,6 @@
 import { useFormik } from 'formik'
 import './GameFormStyle.css'
-import { uploadGamesApi, uploadGameImageApi, findGameByIdApi, updateGameApi } from './api/GamesService'
+import { uploadGamesApi, uploadGameImageApi, findGameByIdApi, updateGameApi } from '../api/GamesService'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 

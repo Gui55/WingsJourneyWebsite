@@ -1,7 +1,7 @@
 import { useNavigate, useParams } from 'react-router-dom'
 import './GameDetailsStyle.css'
 import { useEffect, useState } from 'react'
-import { deleteGameApi, findGameByIdApi } from './api/GamesService'
+import { deleteGameApi, findGameByIdApi } from '../api/GamesService'
 
 export default function GameDetailsComponent(){
 

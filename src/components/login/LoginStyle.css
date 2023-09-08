@@ -1,0 +1,19 @@
+html, .loginPage, .loginForm{
+    background-color: rgb(212, 255, 255);
+}
+
+.loginInput{
+    padding-top: 50px;
+}
+
+.btnDiv{
+    margin-top: 40px;
+}
+
+.gameBtn{
+    border: 5px solid rgb(96, 218, 255);
+    border-radius: 10px;
+    color: rgb(96, 218, 255);
+    padding: 20px;
+    width: 200px;
+}
