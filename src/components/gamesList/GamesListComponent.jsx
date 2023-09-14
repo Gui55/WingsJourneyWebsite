@@ -33,7 +33,6 @@ export default function GamesListComponent(){
                 .catch((error) => console.log(error))
         }))
         .then((images) => {
-            console.log(images)
             setImgs(images)
             setGames(games)
         })
