@@ -27,7 +27,7 @@ export default function GamesListComponent(){
                           (data, byte) => data + String.fromCharCode(byte),
                           ''
                         )
-                      );
+                    );
                     return `data:image/png;base64,${base64String}`;
                 })
                 .catch((error) => console.log(error))
