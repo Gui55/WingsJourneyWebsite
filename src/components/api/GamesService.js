@@ -1,10 +1,4 @@
-import axios from 'axios'
-
-const apiClient = axios.create(
-    {
-        baseURL: 'http://localhost:8081/'
-    }
-)
+import { apiClient } from "./ApiClient"
 
 export const gamesApi = () => apiClient.get("games")
 export const uploadGamesApi = (game) => apiClient.post("games", game)
@@ -16,3 +10,4 @@ export const uploadGameImageApi = (id, formData) => apiClient.post(`games/image/
 export const findGameByIdApi = (id) => apiClient.get(`games/id/${id}`)
 export const updateGameApi = (game) => apiClient.post("games/update", game)
 export const deleteGameApi = (id) => apiClient.delete(`games/delete/${id}`)
+export const gameImageApi = (url) => apiClient.get(`${url}`)
