@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { gamesApi } from '../api/GamesService'
+import { gamesApi, gameImageApi } from '../api/GamesService'
 import './GameListStyle.css'
 import { useNavigate } from 'react-router-dom'
 
@@ -8,13 +8,35 @@ export default function GamesListComponent(){
     const navigate = useNavigate()
 
     const [games, setGames] = useState([])
+    const [imgs, setImgs] = useState([])
 
     useEffect(() => getGames(),[])
 
     function getGames(){
         gamesApi()
-        .then((response) => setGames(response.data))
+        .then((response) => handleGames(response.data))
         .catch((error) => console.log(error))
+    }
+
+    function handleGames(games){
+        Promise.all(games.map((game) => {
+            return gameImageApi(game.image)
+                .then((response) => {
+                    const base64String = btoa(
+                        new Uint8Array(response.data).reduce(
+                          (data, byte) => data + String.fromCharCode(byte),
+                          ''
+                        )
+                      );
+                    return `data:image/png;base64,${base64String}`;
+                })
+                .catch((error) => console.log(error))
+        }))
+        .then((images) => {
+            console.log(images)
+            setImgs(images)
+            setGames(games)
+        })
     }
 
     function goToGameDetails(id){
@@ -34,7 +56,7 @@ export default function GamesListComponent(){
                                 <strong className='gameText'>{game.company}</strong>
                             </div>
                             <div>
-                                <img className='gameListImage' src={game.image} />
+                                <img className='gameListImage' key={index} src={imgs[index]} alt={`Game ${index}`} />
                             </div>
                         </div>
                     </li>

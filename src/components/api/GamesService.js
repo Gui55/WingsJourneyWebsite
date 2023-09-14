@@ -10,4 +10,4 @@ export const uploadGameImageApi = (id, formData) => apiClient.post(`games/image/
 export const findGameByIdApi = (id) => apiClient.get(`games/id/${id}`)
 export const updateGameApi = (game) => apiClient.post("games/update", game)
 export const deleteGameApi = (id) => apiClient.delete(`games/delete/${id}`)
-export const gameImageApi = (url) => apiClient.get(`${url}`)
+export const gameImageApi = (url) => apiClient.get(`${url}`, {responseType: 'arraybuffer'})
