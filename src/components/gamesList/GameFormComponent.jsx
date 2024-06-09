@@ -1,6 +1,6 @@
 import { useFormik } from 'formik'
 import './GameFormStyle.css'
-import { uploadGamesApi, uploadGameImageApi, findGameByIdApi, updateGameApi } from '../api/GamesService'
+import { uploadGamesApi, uploadGameImageApi, findGameByIdApi, updateGameApi, gameImageApi } from '../api/GamesService'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 
@@ -15,6 +15,7 @@ export default function GameFormComponent(){
     const [initGenre, setInitGenre] = useState('')
     const [initDescription, setInitDescription] = useState('')
     const [initImage, setInitImage] = useState('')
+    const [imToShow, setImToShow] = useState('')
     const [changeIm, setChangeIm] = useState(true)
 
     useEffect(
@@ -32,10 +33,24 @@ export default function GameFormComponent(){
                     setInitDescription(response.data.description)
                     setInitImage(response.data.image)
                     setChangeIm(response.data.image.length==0)
-                    //initialImage = response.data.name
+                    retrieveImage(response.data.image)
                 })
                 .catch(error => console.log(error))
         }
+    }
+
+    function retrieveImage(image) {
+        gameImageApi(image)
+            .then((response) => {
+                const base64String = btoa(
+                    new Uint8Array(response.data).reduce(
+                      (data, byte) => data + String.fromCharCode(byte),
+                      ''
+                    )
+                );
+                setImToShow(`data:image/png;base64,${base64String}`)
+            })
+            .catch(error => console.log(error))
     }
 
     const formik = useFormik({
@@ -127,7 +142,7 @@ export default function GameFormComponent(){
                         }/>)}
                         {!changeIm && (
                             <div>
-                                <img className='gameFormImage' src={initImage} />
+                                <img className='gameFormImage' src={imToShow} alt="Imagem do Jogo"/>
                                 <strong className='gameBtn' onClick={()=>setChangeIm(true)}>Alterar imagem</strong>
                             </div>
                         )}

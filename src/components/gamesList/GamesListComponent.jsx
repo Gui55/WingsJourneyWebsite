@@ -10,11 +10,13 @@ export default function GamesListComponent(){
     const [games, setGames] = useState([])
     const [imgs, setImgs] = useState([])
 
-    useEffect(() => getGames(),[])
+    useEffect(() => getGames())
 
     function getGames(){
         gamesApi()
-        .then((response) => handleGames(response.data))
+        .then((response) => {
+            handleGames(response.data)
+        })
         .catch((error) => console.log(error))
     }
 
