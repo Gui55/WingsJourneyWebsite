@@ -5,11 +5,11 @@ import { apiClient } from "../api/ApiClient";
 const AuthContext = createContext()
 
 export const useAuth = () => useContext(AuthContext)
+let interceptor
 
 export default function AuthProvider({children}){
 
     const [isAuthenticated, setAuthenticated] = useState(false)
-    const [token, setToken] = useState(null)
 
     async function login(user, password){
         try{
@@ -18,9 +18,12 @@ export default function AuthProvider({children}){
             if(response.status === 200){
                 const jwtToken = 'Bearer '+response.data.token
                 setAuthenticated(true)
-                setToken(jwtToken)
 
-                apiClient.interceptors.request.use(
+                if (interceptor !== undefined) {
+                    apiClient.interceptors.request.eject(interceptor);
+                }
+
+                interceptor = apiClient.interceptors.request.use(
                     (config) => {
                         config.headers.Authorization = jwtToken
                         return config
@@ -40,6 +43,9 @@ export default function AuthProvider({children}){
 
     function logout(){
         setAuthenticated(false)
+        if (interceptor !== undefined) {
+            apiClient.interceptors.request.eject(interceptor);
+        }
     }
 
     return(
